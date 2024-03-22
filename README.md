@@ -110,6 +110,13 @@ Even when a request triggers `/sleep`, other requests continue to receive prompt
 ### [BONUS COMMIT]
 
 **(BONUS): Try to create a function build as a replacement to new and compare!**
+
 When using `build`, we gain the advantage of more explicit error handling through the utilization of PoolCreationError. 
 Meanwhile, with `new` where the expectation is that the creation of the thread pool will not fail. 
 This nuanced difference ensures that we can effectively manage potential errors related to pool creation, enhancing the robustness and reliability of our codebase.
+
+--- 
+
+### References
+1. Module 6: Concurrency
+2. https://rust-book.cs.brown.edu/ch20-00-final-project-a-web-server.html
