@@ -14,17 +14,17 @@ The handle_connection function is responsible for processing the TCP stream rece
 This function reads lines from the TCP stream until it reaches an empty line, indicating the end of the HTTP request headers. 
 It then prints out the HTTP request headers for further processing.
 
-**a. Argument**
+- **Argument**
 
 The handle_connection function takes a mutable reference to a TcpStream as its argument. 
 This stream represents the connection to a client.
 
-**b. Buffered Reader**
+- **Buffered Reader**
 
 Inside the function, a BufReader is created wrapping the TcpStream. 
 This is used to efficiently read from the stream line by line.
 
-**c. HTTP Request Parsing**
+- **HTTP Request Parsing**
 
 The lines() method is called on the BufReader, which returns an iterator over the lines of the incoming stream.
 Each line is then unwrapped from the Result using the map method.
@@ -32,7 +32,35 @@ The take_while method is used to collect lines until an empty line is encountere
 indicating the end of the HTTP request headers.
 The collected lines are stored in a vector named http_request.
 
-**d. Printing the Request**
+- **Printing the Request**
 
 The contents of the http_request vector are printed using println!(), allowing to see the HTTP request headers.
 
+![Commit 2 screen capture](/assets/images/commit2.png)
+
+**2. What you have learned about the new code the handle_connection?**
+
+The handle_connection function now reads the contents of "hello.html" 
+and constructs an HTTP response with a 200 OK status line, 
+including the length of the file contents in the Content-Length header. 
+It then sends this response back to the client over the TCP stream.
+In the updated handle_connection function, several modifications have been made to handle an HTTP response.
+
+- **File Reading**
+
+The code now includes use std::fs to bring the file system module into scope.
+It reads the contents of a file named "hello.html" into a string using fs::read_to_string(). 
+If the file read is successful, its contents are stored in the contents variable.
+
+- **HTTP Response Construction**
+
+The status_line variable holds the HTTP status line "HTTP/1.1 200 OK".
+The length variable holds the length of the contents of "hello.html".
+A string response is constructed, including the status line, content length header, 
+and the actual contents of "hello.html". 
+These are formatted into an HTTP response string.
+
+- **Sending the Response**
+
+The constructed HTTP response is sent back to the client using stream.write_all(). 
+This writes the response bytes to the TCP stream.
