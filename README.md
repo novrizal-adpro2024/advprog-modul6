@@ -81,3 +81,13 @@ The `status_line` is also different.
 - Refactoring is needed because it will make things easier to distinguish 
 between cases within the if else blocks, 
 as they now only contain their specific conditional differences. 
+
+---
+
+### [COMMIT 4]
+I tried to use two requests, the `/` and `/sleep`. 
+Accessing `/` will immediately load the page, while accessing `/sleep` will wait for 10 seconds before loading. 
+However, if we access `/sleep` first and then `/`, both paths will wait for 10 seconds because `/` needs to wait until the sleep request is processed. 
+This happens because the current server is single-threaded (processes requests sequentially). 
+It means that it won't process the second request until the first one is completed. 
+If many users try to access it, it will become worse.
