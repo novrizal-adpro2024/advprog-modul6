@@ -4,9 +4,7 @@
 
 ---
 
-### Reflection
-
----
+### [COMMIT 1]
 
 **1. What is inside the handle_connection method?**
 
@@ -36,6 +34,9 @@ The collected lines are stored in a vector named http_request.
 
 The contents of the http_request vector are printed using println!(), allowing to see the HTTP request headers.
 
+---
+
+### [COMMIT 2]
 ![Commit 2 screen capture](/assets/images/commit2.png)
 
 **2. What you have learned about the new code the handle_connection?**
@@ -64,3 +65,19 @@ These are formatted into an HTTP response string.
 
 The constructed HTTP response is sent back to the client using stream.write_all(). 
 This writes the response bytes to the TCP stream.
+
+---
+
+### [COMMIT 3]
+![Commit 3 screen capture](assets/images/commit3.png)
+
+**3. How to split between response and why the refactoring is needed?**
+
+- Split between response can be done by using the `if else` and read the `request_line`.
+If it is `"GET / HTTP/1.1"` then it will go to Hello.html file.
+Else, it will go to 404.html file.
+The `status_line` is also different.
+
+- Refactoring is needed because it will make things easier to distinguish 
+between cases within the if else blocks, 
+as they now only contain their specific conditional differences. 
