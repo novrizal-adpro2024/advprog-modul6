@@ -104,3 +104,12 @@ ThreadPool enables concurrent processing of connections, thus enhancing the serv
 By executing connections asynchronously, the ThreadPool ensures that multiple requests can be processed simultaneously. 
 This prevents server overload by limiting the number of threads to a maximum of 4, ensuring efficient resource utilization. 
 Even when a request triggers `/sleep`, other requests continue to receive prompt responses.
+
+---
+
+### [BONUS COMMIT]
+
+**(BONUS): Try to create a function build as a replacement to new and compare!**
+When using `build`, we gain the advantage of more explicit error handling through the utilization of PoolCreationError. 
+Meanwhile, with `new` where the expectation is that the creation of the thread pool will not fail. 
+This nuanced difference ensures that we can effectively manage potential errors related to pool creation, enhancing the robustness and reliability of our codebase.
