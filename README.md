@@ -91,3 +91,16 @@ However, if we access `/sleep` first and then `/`, both paths will wait for 10 s
 This happens because the current server is single-threaded (processes requests sequentially). 
 It means that it won't process the second request until the first one is completed. 
 If many users try to access it, it will become worse.
+
+---
+
+### [COMMIT 5]
+
+**5. Try to understand how the ThreadPool works!**
+
+A ThreadPool is a collection of spawned threads designed to handle tasks. 
+To mitigate the risk of Denial-of-Service attacks, we have to set limit on the ThreadPool.
+ThreadPool enables concurrent processing of connections, thus enhancing the server throughput. 
+By executing connections asynchronously, the ThreadPool ensures that multiple requests can be processed simultaneously. 
+This prevents server overload by limiting the number of threads to a maximum of 4, ensuring efficient resource utilization. 
+Even when a request triggers `/sleep`, other requests continue to receive prompt responses.
